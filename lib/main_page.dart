@@ -32,8 +32,6 @@ class _ContributorsWallState extends State<ContributorsWall> {
       .decode(const String.fromEnvironment('API_TOKEN').replaceAll("~", "=")));
 
   Future<void> fetchContributors() async {
-    print(String.fromEnvironment('API_TOKEN').replaceAll("~", "="));
-    print(token);
     var page = 0;
     final contributors = <Contributor>[];
     while (true) {
