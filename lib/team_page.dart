@@ -28,6 +28,8 @@ class _ContributorsWallState extends State<ContributorsWall> {
   final r = Random();
   final cache = DefaultCacheManager();
 
+  String? token;
+
   Future<void> fetchContributors() async {
     var page = 0;
     final contributors = <Contributor>[];
@@ -35,9 +37,8 @@ class _ContributorsWallState extends State<ContributorsWall> {
       print('Fetching page $page');
       final uri = Uri.parse(
           'https://api.github.com/repos/flutter/flutter/contributors?page=$page');
-      final r = await client.get(uri, headers: {
-        'Authorization': 'token 5b3ccb5604ed8dd35c04701b80ede34137029687'
-      });
+      final r = await client.get(uri,
+          headers: {if (token != null) 'Authorization': 'token $token'});
       try {
         final list = jsonDecode(r.body) as List;
         if (list.isEmpty) break;
