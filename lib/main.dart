@@ -1,4 +1,4 @@
-import 'package:contributors_wall/team_page.dart';
+import 'package:contributors_wall/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

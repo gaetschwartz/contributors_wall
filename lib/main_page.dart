@@ -28,7 +28,7 @@ class _ContributorsWallState extends State<ContributorsWall> {
   final r = Random();
   final cache = DefaultCacheManager();
 
-  String? token;
+  static const String token = String.fromEnvironment('API_TOKEN');
 
   Future<void> fetchContributors() async {
     var page = 0;
@@ -38,7 +38,7 @@ class _ContributorsWallState extends State<ContributorsWall> {
       final uri = Uri.parse(
           'https://api.github.com/repos/flutter/flutter/contributors?page=$page');
       final r = await client.get(uri,
-          headers: {if (token != null) 'Authorization': 'token $token'});
+          headers: {if (token.isNotEmpty) 'Authorization': 'token $token'});
       try {
         final list = jsonDecode(r.body) as List;
         if (list.isEmpty) break;
@@ -266,7 +266,7 @@ class _EngageCountDownState extends State<EngageCountDown>
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${duration.inHours} : ${duration.inMinutes % Duration.minutesPerHour} : ${duration.inSeconds % Duration.secondsPerMinute}',
+      '${duration.inHours}:${(duration.inMinutes % Duration.minutesPerHour).toString().padLeft(2, '0')}:${(duration.inSeconds % Duration.secondsPerMinute).toString().padLeft(2, '0')}',
       style: Theme.of(context).textTheme.headline4,
     );
   }
