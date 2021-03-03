@@ -27,7 +27,7 @@ jobs:
       - name: Enable flutter web
         run: flutter config --enable-web
       - name: "Build Web App"
-        run: flutter build web --dart-define API_TOKEN=${{ secrets.API_TOKEN }}
+        run: flutter build web --dart-define API_TOKEN="${{ secrets.API_TOKEN }}"
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

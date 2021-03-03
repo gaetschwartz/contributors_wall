@@ -28,9 +28,12 @@ class _ContributorsWallState extends State<ContributorsWall> {
   final r = Random();
   final cache = DefaultCacheManager();
 
-  static const String token = String.fromEnvironment('API_TOKEN');
+  static final String token = ascii.decode(
+      base64.decode(String.fromEnvironment('API_TOKEN').replaceAll("~", "=")));
 
   Future<void> fetchContributors() async {
+    print(String.fromEnvironment('API_TOKEN').replaceAll("~", "="));
+    print(token);
     var page = 0;
     final contributors = <Contributor>[];
     while (true) {
