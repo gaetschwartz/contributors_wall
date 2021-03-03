@@ -37,8 +37,7 @@ class _ContributorsWallState extends State<ContributorsWall> {
       print('Fetching page $page');
       final uri = Uri.parse(
           'https://api.github.com/repos/flutter/flutter/contributors?page=$page');
-      final r = await client.get(uri,
-          headers: {if (token.isNotEmpty) 'Authorization': 'token $token'});
+      final r = await client.get(uri, headers: {});
       try {
         final list = jsonDecode(r.body) as List;
         if (list.isEmpty) break;
