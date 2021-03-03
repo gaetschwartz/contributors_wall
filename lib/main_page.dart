@@ -28,8 +28,8 @@ class _ContributorsWallState extends State<ContributorsWall> {
   final r = Random();
   final cache = DefaultCacheManager();
 
-  static final String token = ascii.decode(
-      base64.decode(String.fromEnvironment('API_TOKEN').replaceAll("~", "=")));
+  static final String token = ascii.decode(base64
+      .decode(const String.fromEnvironment('API_TOKEN').replaceAll("~", "=")));
 
   Future<void> fetchContributors() async {
     print(String.fromEnvironment('API_TOKEN').replaceAll("~", "="));
